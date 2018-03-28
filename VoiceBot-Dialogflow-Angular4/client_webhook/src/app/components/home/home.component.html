@@ -1,0 +1,114 @@
+<div (click)="onClick($event)" id="circle_div">
+  <div id="ct">
+    <i [hidden]="show" class="_1ZSagdd_Wbj_ZKw0RkZfOn">
+      <svg width="25" height="25" viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23.295 24.412a.987.987 0 0 1-1.123-.43L19.9 20.358H9.527c-1.392 0-2.523-1.153-2.523-2.57V16.3c0-.563.448-1.02 1-1.02.553 0 1 .457 1 1.02v1.485c0 .295.235.533.523.533h10.92c.036 0 .067.018.103.022a.96.96 0 0 1 .527.224.984.984 0 0 1 .14.15c.023.026.054.043.073.075l.725 1.154V9.7a.528.528 0 0 0-.523-.532h-1.48c-.55 0-1-.457-1-1.02 0-.56.45-1.018 1-1.018h1.48c1.392 0 2.524 1.152 2.524 2.57V23.433c0 .452-.293.85-.72.978zM14.49 13.226H4.116L1.844 16.85a.997.997 0 0 1-1.124.43 1.017 1.017 0 0 1-.72-.978V2.57C0 1.152 1.132 0 2.523 0H14.49c1.39 0 2.52 1.152 2.52 2.57v8.085c0 1.418-1.13 2.57-2.52 2.57zm.52-10.656a.528.528 0 0 0-.52-.532H2.522c-.288 0-.522.24-.522.532v10.242l.726-1.153c.02-.032.05-.05.07-.076a.897.897 0 0 1 .296-.256.92.92 0 0 1 .372-.118c.037-.004.068-.022.104-.022h10.92c.288 0 .522-.238.522-.533V2.57z"
+          fill="#FFF" fill-rule="evenodd"></path>
+      </svg>
+    </i>
+  </div>
+  <div id="ct1">
+    <i [hidden]="!show" class="_1ZSagdd_Wbj_ZKw0RkZfOn">
+      <svg width="17" height="17" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16.726 15.402c.365.366.365.96 0 1.324-.178.178-.416.274-.663.274-.246 0-.484-.096-.663-.274L8.323 9.648h.353L1.6 16.726c-.177.178-.416.274-.663.274-.246 0-.484-.096-.663-.274-.365-.365-.365-.958 0-1.324L7.35 8.324v.35L.275 1.6C-.09 1.233-.09.64.274.274c.367-.365.96-.365 1.326 0l7.076 7.078h-.353L15.4.274c.366-.365.96-.365 1.326 0 .365.366.365.958 0 1.324L9.65 8.675v-.35l7.076 7.077z"
+          fill="#FFF" fill-rule="evenodd"></path>
+      </svg>
+    </i>
+  </div>
+</div>
+
+<div [hidden]="!show" class="col-sm-3 col-sm-offset-7 frame" id="chat_box">
+  <!-- head -->
+  <div id="head1" class="row">
+    <div class="col col-md-12">
+      <div id="btm_box1">
+        <div id="text_div1" class="msj-rta macro">
+          <div id="text_in" class="text text-r">
+            <h5>
+              <b>HCL Demo Chat bot</b>
+            </h5>
+            <!-- <h5><b><span><img id="chat_img" class="img-rectangle" src="../assets/images/chat.png"></span><span> Chat bot</span></b></h5> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- body -->
+
+  <div class="scrollbar">
+    <div class="scrollable" id="text_body" #content>
+      <div id="cust_messages" #cust_content>
+        <ng-container *ngFor="let message of messages | async" #cust_messages>
+
+          <div id="cust_message" class="message" [ngClass]="{ 'from': message.sentBy === 'bot',
+                                                'to':   message.sentBy === 'user' }">
+            {{ message.content }}
+          </div>
+
+          <!-- <input type="hidden" value="{{ message.demand_data}}" > -->
+
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- <div *ngFor="let data of messages">
+    <p>{{data.demand_data}}</p>
+  </div> -->
+
+  <!-- end ofbody -->
+
+  <!-- bottom input box -->
+  <div id="btm_box">
+    <div id="text_div2" class="msj-rta macro">
+      <div id="text_in" class="text text-r">
+        <form (ngSubmit)="sendMessage()">
+
+          <input title="click here to type a message" id="cust_input" [(ngModel)]="formValue" name="formValue" #msg class="mytext"
+            autocomplete="off" placeholder="{{place_holder}}">
+          <span>
+            <img (click)="uploadFile()" title="Upload file" id="attach_img" class="img-rectangle" src="../assets/images/attachment-1.png">
+
+            <img (click)="voiceChat()" id="mic_img" class="img-rectangle" src="../assets/images/mic2.png">
+          </span>
+
+          <input [disabled]="msg==''" id="sbt" type="submit">
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <iframe
+width="350"
+height="430"
+src="https://console.dialogflow.com/api-client/demo/embedded/8f0af51a-3c02-40fb-8945-0775be7e59bf">
+</iframe> -->
+
+
+<div id="graph_div" style="width:700px;height:700px;position:fixed;">
+  <div  style="display: block">
+    <canvas baseChart 
+    [datasets]="barChartData" 
+    [labels]="barChartLabels" 
+    [options]="barChartOptions"
+    [legend]="barChartLegend"
+    [chartType]="barChartType" 
+    (chartHover)="chartHovered($event)" 
+    (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+</div>
+
+<!-- <fusioncharts
+    [id]="id"
+    [width]="width"
+    [height]="height"
+    [type]="mscombi2d"
+    [dataFormat]="dataFormat"
+    [dataSource]="dataSource"
+></fusioncharts> -->
