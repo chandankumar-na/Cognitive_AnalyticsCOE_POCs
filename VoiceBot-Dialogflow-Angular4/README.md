@@ -55,7 +55,7 @@ Click on **Fulfillment** in the left panel and switch the **Inline Editor** togg
 
 ## Using `npm link`
 
-Check out and build the [voiceBot-dialogflow-angula4](https://github.com/ERS-HCL/angular-atomic-library.git)
+Check out and build the [voiceBot-dialogflow-angula4](https://github.com/chandu2608/Cognitive_AnalyticsCOE_POCs.git)
 ```bash
 git clone https://github.com/ERS-HCL/voiceBot-dialogflow-angula4.git
 cd voiceBot-dialogflow-angula4\client_webhook
